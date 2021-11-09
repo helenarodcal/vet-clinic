@@ -10,26 +10,23 @@ public class Dog {
     private final String name;
     private final String breed;
     private final LocalDateTime dateOfBirth;
-    public final String favouriteFood;
+    private final String colour;
+    private final String favouriteFood;
+    private final String toy;
 
-    public Dog(String name, String breed, LocalDateTime dateOfBirth) {
-//        this.name = name;
-//        this.breed = breed;
-//        this.dateOfBirth = dateOfBirth;
-//        this.favouriteFood = null;
-        this(name, breed, dateOfBirth, null);
-    }
-
-    public Dog(String name, String breed, LocalDateTime dateOfBirth, String getFavouriteFood) {
+    public Dog(String name, String breed, LocalDateTime dateOfBirth, String colour, String favouriteFood, String toy) {
         this.name = name;
         this.breed = breed;
         this.dateOfBirth = dateOfBirth;
-        this.favouriteFood = getFavouriteFood;
+        this.colour = colour;
+        this.favouriteFood = favouriteFood;
+        this.toy = toy;
     }
 
-    public static DogBuilder called(String name) {
-        return new DogBuilder(name);
-    }
+
+//    public static DogBuilder called(String name) {
+//        return new DogBuilder(name);
+//    }
 
     /*
     public void setName(String name) {
@@ -61,11 +58,31 @@ public class Dog {
         return favouriteFood;
     }
 
+    public String getColour() {
+        return colour;
+    }
 
-    public static class DogBuilder {
+    public String getFavouriteToy() {
+        return toy;
+    }
+
+    interface OfBreed {
+        OfColour ofBreed(String breed);
+    }
+    interface OfColour {
+        DogBuilder ofColour(String colour);
+    }
+
+    public static OfBreed called(String name) {
+        return new DogBuilder(name);
+    }
+
+    public static class DogBuilder implements OfBreed, OfColour {
         private String name;
         private String breed;
-//        private LocalDateTime birthday;
+        private String colour;
+        private String favouriteFood;
+        private String toy;
 
         public DogBuilder(String name) {
             this.name = name;
@@ -74,17 +91,25 @@ public class Dog {
             this.breed = breed;
             return this;
         }
-//        public DogBuilder bornOn(LocalDateTime birthday) {
-//            this.birthday = birthday;
-//            return this;
-//        }
-//        public Dog build() {
-//            return new Dog(name, breed, birthday);
-//        }
+
         public Dog bornOn(LocalDateTime birthday) {
-            return new Dog(name, breed, birthday);
+            return new Dog(name, breed, birthday, colour, favouriteFood, toy);
         }
 
+        public DogBuilder ofColour(String colour) {
+            this.colour = colour;
+            return this;
+        }
+
+        public DogBuilder withFavouriteFood(String food) {
+            this.favouriteFood = food;
+            return this;
+        }
+
+        public DogBuilder withFavouriteToy(String toy) {
+            this.toy = toy;
+            return this;
+        }
     }
 }
 
