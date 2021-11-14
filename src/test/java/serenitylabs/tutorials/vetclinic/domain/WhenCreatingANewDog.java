@@ -7,57 +7,63 @@ import java.time.LocalDateTime;
 
 public class WhenCreatingANewDog {
     LocalDateTime birthday = LocalDateTime.now();
-    Dog fido = Dog.called("Fido")
-            .ofBreed("Poodle")
-            .ofColour("black")
-            .bornOn(birthday);
+
 
     @Test
-    public void it_should_have_a_name() {
+    public void it_should_have_a_name_breed_colour_and_date_of_birth() {
+//        Dog fido = Dog.called("Fido")
+//                .ofBreed("Poodle")
+//                .ofColour("black")
+//                .bornOn(birthday);
+
+        //separating the builder from the domain class
+//        Dog fido = DogBreeder.aDog()
+//                .called("Fido")
+//                .ofBreed("Poodle")
+//                .ofColour("black")
+//                .bornOn(birthday);
+        //PROTOTYPING -- builder with some pre-populated data
+                Dog fido = DogBreeder.aLargeDog()
+                .called("Fido")
+                .ofColour("black")
+                .bornOn(birthday);
         Assert.assertEquals("Fido", fido.getName());
-    }
-
-    @Test
-    public void it_should_have_a_breed() {
-        Assert.assertEquals("Poodle", fido.getBreed());
-    }
-
-    @Test
-    public void it_should_have_a_colour() {
+        Assert.assertEquals("Labrador", fido.getBreed());
         Assert.assertEquals("black", fido.getColour());
-    }
-
-    @Test
-    public void it_should_have_a_birthday() {
         Assert.assertEquals(birthday, fido.getDateOfBirth());
     }
 
     @Test
     public void it_can_have_an_optional_favourite_food() {
-        Dog bobby = Dog.called("Bobby")
-                .ofBreed("Labrador")
-                .ofColour("Golden")
+        Dog bobby = DogBreeder.aGuardDog()
+                .called("Bobby")
+                .ofColour("Black")
                 .withFavouriteFood("meat")
                 .bornOn(birthday);
+        Assert.assertEquals("German Shepard", bobby.getBreed());
         Assert.assertEquals("meat", bobby.getFavouriteFood());
 
-        Dog rita = Dog.called("Rita")
-                .ofBreed("Labrador")
-                .ofColour("Black")
+        //PROTOTYPE
+        Dog rita = DogBreeder.aSmallDog()
+                .called("Rita")
+                .ofColour("White")
                 .bornOn(birthday);
+        Assert.assertEquals("Poodle", rita.getBreed());
         Assert.assertNull(rita.getFavouriteFood());
     }
 
     @Test
     public void it_can_have_an_optional_favourite_toy() {
-        Dog jewel = Dog.called("Jewel")
+        Dog jewel = DogBreeder.aDog()
+                .called("Jewel")
                 .ofBreed("Labrador")
                 .ofColour("Golden")
                 .withFavouriteToy("bone")
                 .bornOn(birthday);
         Assert.assertEquals("bone", jewel.getFavouriteToy());
 
-        Dog lance = Dog.called("Lance")
+        Dog lance = DogBreeder.aDog()
+                .called("Lance")
                 .ofBreed("Labrador")
                 .ofColour("Black")
                 .bornOn(birthday);

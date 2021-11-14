@@ -65,29 +65,29 @@ public class Dog {
     public String getFavouriteToy() {
         return toy;
     }
-
+/*
     interface OfBreed {
         OfColour ofBreed(String breed);
     }
     interface OfColour {
-        DogBuilder ofColour(String colour);
+        DogBreeder ofColour(String colour);
     }
 
     public static OfBreed called(String name) {
-        return new DogBuilder(name);
+        return new DogBreeder(name);
     }
 
-    public static class DogBuilder implements OfBreed, OfColour {
+    public static class DogBreeder implements OfBreed, OfColour {
         private String name;
         private String breed;
         private String colour;
         private String favouriteFood;
         private String toy;
 
-        public DogBuilder(String name) {
+        public DogBreeder(String name) {
             this.name = name;
         }
-        public DogBuilder ofBreed(String breed) {
+        public DogBreeder ofBreed(String breed) {
             this.breed = breed;
             return this;
         }
@@ -96,20 +96,22 @@ public class Dog {
             return new Dog(name, breed, birthday, colour, favouriteFood, toy);
         }
 
-        public DogBuilder ofColour(String colour) {
+        public DogBreeder ofColour(String colour) {
             this.colour = colour;
             return this;
         }
 
-        public DogBuilder withFavouriteFood(String food) {
+        public DogBreeder withFavouriteFood(String food) {
             this.favouriteFood = food;
             return this;
         }
 
-        public DogBuilder withFavouriteToy(String toy) {
+        public DogBreeder withFavouriteToy(String toy) {
             this.toy = toy;
             return this;
         }
     }
+
+ */
 }
 
