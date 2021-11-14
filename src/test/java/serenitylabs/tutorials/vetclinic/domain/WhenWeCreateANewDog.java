@@ -1,7 +1,9 @@
 package serenitylabs.tutorials.vetclinic.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
@@ -19,13 +21,18 @@ public class WhenWeCreateANewDog {
     @Test
     public void a_dog_should_be_printed_in_a_readable_form() {
         Dog fido = Dog.called("Fido").ofBreed("Labrador").andOfColour("Black");
+        //hamcrest
         assertThat(fido.toString(), is(equalTo("Fido the black labrador")));
-
+        assertThat(fido.toString(), is(equalToIgnoringCase("Fido the BLACK labrador")));
         assertThat(fido.toString(), startsWith("Fido"));
         assertThat(fido.toString(), endsWith("labrador"));
         assertThat(fido.toString(), containsString("black"));
 
-        assertThat(fido.toString(), is(equalToIgnoringCase("Fido the BLACK labrador")));
+//assertj
+        assertThat(fido.toString()).isEqualTo("Fido the black labrador");
+        assertThat(fido.toString().startsWith("Fido"));
+        assertThat(fido.toString()).containsIgnoringCase("Black");
+        assertThat(fido.toString()).endsWith("labrador");
 
 //        assertThat(fido.toString(), endsWithIgnoringCase("LABRADOR"));
     }

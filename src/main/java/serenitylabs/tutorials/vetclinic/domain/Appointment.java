@@ -1,5 +1,4 @@
 package serenitylabs.tutorials.vetclinic.domain;
-
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -40,6 +39,10 @@ public class Appointment {
 
     public Optional<String> getReason() {
         return reason;
+    }
+
+    public boolean isBefore(LocalDateTime firstAppointmentTime, LocalDateTime secondAppointmentTime) {
+        return firstAppointmentTime.isBefore(secondAppointmentTime);
     }
 
     public static class AppointmentBooker {
