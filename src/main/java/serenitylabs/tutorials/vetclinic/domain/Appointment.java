@@ -41,8 +41,12 @@ public class Appointment {
         return reason;
     }
 
-    public boolean isBefore(LocalDateTime firstAppointmentTime, LocalDateTime secondAppointmentTime) {
+    public static boolean isBefore(LocalDateTime firstAppointmentTime, LocalDateTime secondAppointmentTime) {
         return firstAppointmentTime.isBefore(secondAppointmentTime);
+    }
+
+    public static boolean isAfter(LocalDateTime firstAppointmentTime, LocalDateTime secondAppointmentTime) {
+        return firstAppointmentTime.isAfter(secondAppointmentTime);
     }
 
     public static class AppointmentBooker {

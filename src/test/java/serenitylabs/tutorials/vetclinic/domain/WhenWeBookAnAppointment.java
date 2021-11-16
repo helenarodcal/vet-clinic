@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
+import static serenitylabs.tutorials.vetclinic.domain.Appointment.isAfter;
+import static serenitylabs.tutorials.vetclinic.domain.Appointment.isBefore;
 
 public class WhenWeBookAnAppointment {
 
@@ -50,9 +52,16 @@ public class WhenWeBookAnAppointment {
 
     @Test
     public void compare_appointment_dates() {
-//        Appointment appointment1 = Appointment.forPetCalled("Fido").ownedBy("Fred").because("He is sick").at(TODAY_AT_2_PM);
-//        Appointment appointment2 = Appointment.forPetCalled("Fido").ownedBy("Fred").because("He needs to get a vaccine").at(TOMORROW_AT_5_PM);
-//
-//        assertTrue(appointment1.isBefore());
+        Appointment appointment1 = Appointment.forPetCalled("Fido").ownedBy("Fred").because("He is sick").at(TODAY_AT_2_PM);
+        Appointment appointment2 = Appointment.forPetCalled("Fido").ownedBy("Fred").because("He needs to get a vaccine").at(TOMORROW_AT_5_PM);
+
+        assertTrue(isBefore(appointment1.getAppointmentTime(), appointment2.getAppointmentTime()));
+        assertFalse(isBefore(appointment2.getAppointmentTime(), appointment1.getAppointmentTime()));
+        assertFalse(isAfter(appointment1.getAppointmentTime(), appointment2.getAppointmentTime()));
+        assertTrue(isAfter(appointment2.getAppointmentTime(), appointment1.getAppointmentTime()));
+
+        assertThat(appointment1.getAppointmentTime().isBefore(appointment2.getAppointmentTime()));
+        assertThat(appointment2.getAppointmentTime().isAfter(appointment1.getAppointmentTime()));
+        assertThat(appointment2.getAppointmentTime().isAfter(LocalDateTime.now()));
     }
 }
