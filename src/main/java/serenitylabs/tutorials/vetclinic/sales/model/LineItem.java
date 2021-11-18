@@ -23,7 +23,7 @@ public class LineItem {
         return unitCost;
     }
 
-    public int getQuanity() {
+    public int getQuantity() {
         return quanity;
     }
 
