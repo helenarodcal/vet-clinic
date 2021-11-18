@@ -3,6 +3,7 @@ package serenitylabs.tutorials.vetclinic.playingball;
 import org.junit.Before;
 import org.junit.Test;
 import serenitylabs.tutorials.vetclinic.playingball.model.Child;
+import serenitylabs.tutorials.vetclinic.playingball.model.DontKnowThatGameException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -69,4 +70,14 @@ public class WhenToldToPlayBall {
 
         assertThat(output.toString(), equalTo("Hit the ball with the stick"));
     }
+
+    @Test(expected = DontKnowThatGameException.class)
+    public void child_cannot_play_unknown_games() {
+
+        Child bill = new Child();
+
+        bill.goPlay(Basketball);
+
+    }
+
 }
